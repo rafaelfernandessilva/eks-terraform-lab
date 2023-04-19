@@ -19,13 +19,13 @@ resource "aws_launch_template" "cluster" {
 
   ebs_optimized = true
   block_device_mappings {
-    device_name = "/dev/sda1"
+    device_name = "/dev/xvda"
 
     ebs {
         delete_on_termination = true
         encrypted = true
         volume_type = "gp3"
-        volume_size = 20
+        volume_size = 35
         iops = 3000
         throughput = 125
         kms_key_id = data.aws_kms_alias.eks.arn
