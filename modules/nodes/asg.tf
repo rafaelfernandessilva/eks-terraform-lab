@@ -8,6 +8,14 @@ resource "aws_autoscaling_group" "eks_cluster" {
     ]
   launch_template {
     id      = aws_launch_template.cluster.id
-    version = "$Latest"
+    version = aws_launch_template.cluster.latest_version
+  }
+
+  instance_refresh {
+    strategy = "Rolling"
+    preferences {
+      min_healthy_percentage = 50
+    }
+    
   }
 }
